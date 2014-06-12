@@ -1,0 +1,100 @@
+<html>
+<head>
+	<style>
+		td { width: 20px; height: 20px; border: 1px solid black; }
+		td.response { width: 80px;border: 0; background: gray; }
+	</style>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"> </script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			setCell(1,1,0);
+			setResponse(1,1,1);
+		});
+
+		function setCell(row, column, color) {
+			var colors = ['cyan','red','purple','yellow','orange','green'];
+			$("#r"+row +" > .c" +column).css('background', colors[color]);
+		}
+		function setResponse(row, whites, blacks) {
+			$("#r"+row +" > .response").html("W=" +whites +" B="+blacks)
+		}
+	</script>
+</head>
+<body>
+	<h1>Group 1 Mastermind</h1>
+	<table>
+		<tr id="r1">
+			<td class="c1"/>
+			<td class="c2"/>
+			<td class="c3"/>
+			<td class="c4"/>
+			<td class="response"/>
+		</tr>
+		<tr id="r2">
+			<td class="c1"/>
+			<td class="c2"/>
+			<td class="c3"/>
+			<td class="c4"/>
+			<td class="response"/>
+		</tr>
+		<tr id="r3">
+			<td class="c1"/>
+			<td class="c2"/>
+			<td class="c3"/>
+			<td class="c4"/>
+			<td class="response"/>
+		</tr>
+		<tr id="r4">
+			<td class="c1"/>
+			<td class="c2"/>
+			<td class="c3"/>
+			<td class="c4"/>
+			<td class="response"/>
+		</tr>
+		<tr id="r5">
+			<td class="c1"/>
+			<td class="c2"/>
+			<td class="c3"/>
+			<td class="c4"/>
+			<td class="response"/>
+		</tr>
+		<tr id="r6">
+			<td class="c1"/>
+			<td class="c2"/>
+			<td class="c3"/>
+			<td class="c4"/>
+			<td class="response"/>
+		</tr>
+		<tr id="r7">
+			<td class="c1"/>
+			<td class="c2"/>
+			<td class="c3"/>
+			<td class="c4"/>
+			<td class="response"/>
+		</tr>
+		<tr id="r8">
+			<td class="c1"/>
+			<td class="c2"/>
+			<td class="c3"/>
+			<td class="c4"/>
+			<td class="response"/>
+		</tr>
+		<tr id="r9">
+			<td class="c1"/>
+			<td class="c2"/>
+			<td class="c3"/>
+			<td class="c4"/>
+			<td class="response"/>
+		</tr>
+		<tr id="r10">
+			<td class="c1"/>
+			<td class="c2"/>
+			<td class="c3"/>
+			<td class="c4"/>
+			<td class="response"/>
+		</tr>
+	</table>
+</body>
+</html>
+
