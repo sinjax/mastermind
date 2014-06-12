@@ -1,16 +1,22 @@
+function Player() {}
 
-function player(){
+Player.prototype.make_guess = function() {
+    // The player is making a guess
 }
 
-player.prototype.provide_guess = function() {
-	console.log("Cheese");
-};
-player.prototype.recieve_feedback = function(feedback){
-
-};
-player.prototype.provide_code = function() {
+Player.prototype.start_game = function() {
+    // This indicates that the player can take their first turn
 }
 
-x = new player();
-x.provide_guess();
-console.log(x.provide_code())
+Player.prototype.receive_feedback = function(feedback) {
+    // This passes the feedback from the player's last guess
+    this.last_feedback = feedback;
+};
+
+Player.prototype.provide_code = function() {
+    var code = [];
+    for (i = 0; i < 6; i++) {
+        code.push(Math.floor(Math.random() * 5));
+    }
+    return code;
+}
