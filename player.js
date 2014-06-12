@@ -1,16 +1,11 @@
 
-function player(){
+function Player(){
 }
 
-player.prototype.provide_guess = function() {
-	console.log("Cheese");
+Player.prototype.provide_guess = function() {
 };
-player.prototype.recieve_feedback = function(feedback){
-
+Player.prototype.recieve_feedback = function(feedback){
 };
-player.prototype.provide_code = function() {
-}
+Player.prototype.provide_code = function() {
+};
 
-x = new player();
-x.provide_guess();
-console.log(x.provide_code())
