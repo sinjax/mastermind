@@ -15,7 +15,7 @@ Player.prototype.receive_feedback = function(feedback) {
 
 Player.prototype.provide_code = function() {
     var code = [];
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < 4; i++) {
         code.push(Math.floor(Math.random() * 5));
     }
     return code;
