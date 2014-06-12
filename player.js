@@ -10,20 +10,22 @@ Interface.prototype.guess_made = function(guess, state) {
 }
 
 
-function Game() {
-    this.state = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-}
-
-Game.prototype.start = function(interface_class, player1_class, player2_class) {
+function Game(interface_class, player1_class, player2_class) {
     this.interface = new interface_class();
     this.player1 = new player1_class();
     this.player2 = new player2_class();
 
-    code = this.player1.provide_code();
+    this.state = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+}
+
+Game.prototype.start = function() {
+    var code = this.player1.provide_code();
 
     this.interface.code_chosen(code);
 
-    while (!this.game_finished()) {}
+    while (!this.game_finished()) {
+        guess = this.player2.take_turn(this.state)
+    }
 }
 
 Game.prototype.game_finished = function() {
