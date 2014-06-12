@@ -1,17 +1,26 @@
+function Game() {
+    this.state = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+}
+
+Game.prototype.start = function(player1_class, player2_class) {
+    this.player1 = new player1_class();
+    this.player2 = new player2_class();
+
+    while (!this.game_finished()) {
+
+    }
+}
+
+Game.prototype.game_finished = function() {
+    return false;
+}
+
+
 function Player() {}
 
-Player.prototype.make_guess = function() {
-    // The player is making a guess
-}
-
-Player.prototype.start_game = function() {
+Player.prototype.take_turn = function(state) {
     // This indicates that the player can take their first turn
 }
-
-Player.prototype.receive_feedback = function(feedback) {
-    // This passes the feedback from the player's last guess
-    this.last_feedback = feedback;
-};
 
 Player.prototype.provide_code = function() {
     var code = [];
