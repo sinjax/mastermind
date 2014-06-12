@@ -19,7 +19,7 @@ function Game(interface_class, player1_class, player2_class) {
 }
 
 Game.prototype.start = function() {
-    this.player1.provide_code(function() {
+    this.player1.provide_code(function(code) {
         this.interface.code_chosen(code);
 
         while (!this.game_finished()) {
@@ -35,7 +35,7 @@ Game.prototype.game_finished = function() {
 
 function Player() {}
 
-Player.prototype.take_turn = function(state) {
+Player.prototype.take_turn = function(state, take_turn_callback) {
     // This indicates that the player can take their first turn
 }
 
