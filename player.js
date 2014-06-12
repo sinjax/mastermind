@@ -24,11 +24,13 @@ function Game(interface_class, player1_class, player2_class) {
 }
 
 Game.prototype.start = function() {
-    this.player1.provide_code(function(code) {
-        this.interface.code_chosen(code);
-        this.code = code;
+    var self = this;
 
-        this.next_turn();
+    this.player1.provide_code(function(code) {
+        self.interface.code_chosen(code);
+        self.code = code;
+
+        self.next_turn();
     });
 }
 
@@ -36,6 +38,7 @@ Game.prototype.next_turn = function() {
     if (this.game_finished()) {
         this.interface.game_finished(this.state);
     } else {
+        var self = this;
         this.player2.take_turn(this.state, function(guess) {
             result = {
                 "misses": 0,
@@ -44,20 +47,22 @@ Game.prototype.next_turn = function() {
             };
 
             for (var i in guess) {
-                if (guess[i] == code[i]) {
+                if (guess[i] == self.code[i]) {
                     result["correct"] += 1;
-                } else if (guess[i] in code) {
+                } else if (guess[i] in self.code) {
                     result["partially_correct"] += 1;
                 } else {
                     result["misses"] += 1;
                 }
             }
 
-            this.state[this.turn] = result;
-            this.turn += 1;
+            self.state[self.turn] = result;
+            self.turn += 1;
 
-            this.interface.guess_made(guess, this.state);
-            setTimeout(this.next_turn, 2000);
+            self.interface.guess_made(guess, self.state);
+            setTimeout(function() {
+                self.next_turn();
+            }, 2000);
         });
     }
 }
@@ -96,4 +101,16 @@ Player.prototype.provide_code = function(provide_code_callback) {
     provide_code_callback(code);
 }
 
-g = Game(Interface, UserPlayer, AiPlayer)
+function UserPlayer() {};
+
+function AIPlayer() {};
+
+UserPlayer.prototype = Player.prototype;
+AIPlayer.prototype = Player.prototype;
+
+// UserPlayer.prototype.take_turn = function(state, take_turn_callback) {
+
+// }
+
+g = new Game(Interface, UserPlayer, AIPlayer)
+g.start();
