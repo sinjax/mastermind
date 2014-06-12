@@ -1,13 +1,30 @@
-function Game() {
-    this.state = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+function Interface() {}
+
+Interface.prototype.code_chosen = function(n) {
+    console.log("The code chosen was:", n)
 }
 
-Game.prototype.start = function(player1_class, player2_class) {
+Interface.prototype.guess_made = function(guess, state) {
+    console.log("New guess made:", guess);
+    console.log("New state:", state);
+}
+
+
+function Game(interface_class, player1_class, player2_class) {
+    this.interface = new interface_class();
     this.player1 = new player1_class();
     this.player2 = new player2_class();
 
-    while (!this.game_finished()) {
+    this.state = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+}
 
+Game.prototype.start = function() {
+    var code = this.player1.provide_code();
+
+    this.interface.code_chosen(code);
+
+    while (!this.game_finished()) {
+        guess = this.player2.take_turn(this.state)
     }
 }
 
