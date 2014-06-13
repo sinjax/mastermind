@@ -6,10 +6,33 @@
 	<script type="text/javascript" src="aiplayer.js"> </script>
 </head>
 <body>
+<div id="output"></div>
 <script type="text/javascript">
-	g = new Game(Interface, AIPlayer, AIPlayer)
+	function OutputWriter() {
+		this.output = document.getElementById("output");
+	}
+	OutputWriter.prototype = Interface.prototype;
+	OutputWriter.prototype.code_chosen = function(n) {
+		tn = document.createTextNode("The code chosen was:" + n)
+		this.output.appendChild(tn)
+		this.output.appendChild(document.createElement("br"))
+	}
+
+	OutputWriter.prototype.guess_made = function(guess, state) {
+	    tn = document.createTextNode("New guess made:" + guess);
+	    this.output.appendChild(tn)
+	    this.output.appendChild(document.createElement("br"))
+	};
+
+	OutputWriter.prototype.game_finished = function(state) {
+	    tn = document.createTextNode("Game Finished:" + state);
+	    this.output.appendChild(tn)
+	    this.output.appendChild(document.createElement("br"))
+	}
+	g = new Game(OutputWriter, AIPlayer, AIPlayer)
 	g.start();
 </script>
+
 
 </body>
 </html>

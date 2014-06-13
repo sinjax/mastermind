@@ -23,15 +23,23 @@ AIPlayer.prototype.take_turn= function(state,callback) {
 		prev_state = state[state.length - 1]
 		// First lets remove the thing we've already
 		this.unused.splice(this.current_guess_index,1)
+		
+		// Now remove possible correct answers which don't return the same judgement as the current guess
 		for (var i = this.S.length - 1; i >= 0; i--) {
 			j = judge(this.c[this.S[i]],this.current_guess)
 			if(j["whites"] != prev_state["whites"] || j["blacks"] != prev_state["blacks"]){
 				this.S.splice(i,1)
 			}
 		};
-		// console.log("S is now: %d long",this.S.length)
+		
 		var min = Math.pow(2, 53);
 		var newcurrent;
+		// Min max bit:
+		// 		amoungst all the guesses not tried so far, 
+		// 			find the judgement combination that would match the most in current possibilities
+		//				(this is like the worst case scenario, the MOST current possibilities it would keep active)
+		// 		hold on to the guess that has the smallest, worst case scenario
+		//			if the a few are all equally small, prefer those which are current possibilities
 		for (var i = 0; i < this.unused.length; i++) {
 			
 			var max = 0;
@@ -53,7 +61,7 @@ AIPlayer.prototype.take_turn= function(state,callback) {
 				};
 			};
 			if(max < min || (max <= min && this.S.indexOf(this.unused[i])>-1)){
-				// console.log("%s scores %d",JSON.stringify(this.c[this.unused[i]]),max)
+				
 				min = max;
 				newcurrent = this.unused[i];
 			}
@@ -61,29 +69,8 @@ AIPlayer.prototype.take_turn= function(state,callback) {
 		this.current_guess = this.c[newcurrent];
 		this.current_guess_index = newcurrent
 	}
-	// console.log("Done, guessing: %s",JSON.stringify(this.current_guess))
+	
 	if(callback!=undefined) callback(this.current_guess)
 	return this.current_guess;
 }
-// AIPlayer.prototype.provide_code = function(provide_code_callback) {
-//     var code = [0,1,0,4];
-//     if(provide_code_callback!=undefined)
-//     	provide_code_callback(code);
-//     return code;
-// }
-ap = new AIPlayer()
-state = []
-correct = ap.provide_code()
-function game_turn () {
-	console.log("Starting turn %d",state.length+1)
-	ret = ap.take_turn(state);
-	console.log("Recieved guess: %s",JSON.stringify(ret))
-	judgement = judge(correct,ret)
-	console.log("Made Judgement: %s",JSON.stringify(judgement))
-	state.push([ret,judgement]);
-	if(judgement["whites"] == 4){
-		console.log("Victory!")
-		return true;
-	}
-	return false;
-}
+
