@@ -1,0 +1,123 @@
+<html>
+<head>
+	<style>
+		td { width: 20px; height: 20px; border: 1px solid black; }
+		td.response { width: 80px;border: 0; background: gray; }
+	</style>
+	<script type="text/javascript" src="player.js"> </script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"> </script>
+	<script type="text/javascript">
+		var rows = [];
+		for (var i=0; i<10; i++) {
+			rows.push([-1, -1, -1, -1]);	
+		}
+		$(document).ready(function() {
+			activateRow(1);	
+			//setCell(1,1,0);
+			//setResponse(1,1,1);
+		});
+
+		function activateRow(row) {
+			$("td").unbind('click');
+			$("#r"+row +" > td").click(function() {
+			});
+			$("#r"+row +" > .response").html("Guess");
+			$("#r"+row +" > .response").click(function() {
+			});
+		}
+
+		function setCell(row, column, color) {
+			var colors = ['cyan','red','purple','yellow','orange','green'];
+			$("#r"+row +"c" +column).css('background', colors[color]);
+		}
+		function setResponse(row, whites, blacks) {
+			$("#r"+row +"_reponse").html("W=" +whites +" B="+blacks);
+		}
+
+		function cycleColor(row, column) {
+			
+		}
+		
+
+	</script>
+</head>
+<body>
+	<h1>Group 1 Mastermind</h1>
+	<table>
+		<tr>
+			<td id="r1c1"/>
+			<td id="r1c2"/>
+			<td id="r1c3"/>
+			<td id="r1c4"/>
+			<td class="response" id="r1_response"/>
+		</tr>
+		<tr>
+			<td id="r2c1"/>
+			<td id="r2c2"/>
+			<td id="r2c3"/>
+			<td id="r2c4"/>
+			<td class="response" id="r2_response"/>
+		</tr>
+		<tr>
+			<td id="r3c1"/>
+			<td id="r3c2"/>
+			<td id="r3c3"/>
+			<td id="r3c4"/>
+			<td class="response" id="r2_response"/>
+		</tr>
+		<tr>
+			<td id="r4c1"/>
+			<td id="r4c2"/>
+			<td id="r4c3"/>
+			<td id="r4c4"/>
+			<td class="response" id="r4_response"/>
+		</tr>
+		<tr>
+			<td id="r5c1"/>
+			<td id="r5c2"/>
+			<td id="r5c3"/>
+			<td id="r5c4"/>
+			<td class="response" id="r5_response"/>
+		</tr>
+		<tr>
+			<td id="r6c1"/>
+			<td id="r6c2"/>
+			<td id="r6c3"/>
+			<td id="r6c4"/>
+			<td class="response" id="r6_response"/>
+		</tr>
+		<tr>
+			<td id="r7c1"/>
+			<td id="r7c2"/>
+			<td id="r7c3"/>
+			<td id="r7c4"/>
+			<td class="response" id="r7_response"/>
+		</tr>
+		<tr>
+			<td id="r8c1"/>
+			<td id="r8c2"/>
+			<td id="r8c3"/>
+			<td id="r8c4"/>
+			<td class="response" id="r8_response"/>
+		</tr>
+
+		<tr>
+			<td id="r9c1"/>
+			<td id="r9c2"/>
+			<td id="r9c3"/>
+			<td id="r9c4"/>
+			<td class="response" id="r9_response"/>
+		</tr>
+		<tr>
+			<td id="r10c1"/>
+			<td id="r10c2"/>
+			<td id="r10c3"/>
+			<td id="r10c4"/>
+			<td class="response" id="r10_response"/>
+		</tr>
+
+
+	</table>
+</body>
+</html>
+
